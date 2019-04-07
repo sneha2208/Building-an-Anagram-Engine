@@ -1,0 +1,129 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Anagram Application</title>
+    </head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <body>
+
+
+    <style>
+
+        p.one {
+    width:20%;
+    background-color:green;
+    border-radius:3em 3em 3em;
+    font-family:Times New Roman;
+    padding:5px;
+    color:orange;
+    font-size:14px;
+    float:left;
+    margin-top:40px;
+    margin-left:380px;
+
+    }
+    .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #D3D3D3;
+    color: black;
+    text-align: center;
+}
+
+     table, th, td {
+     border: 1px solid black;
+
+     }
+     th{
+       background-color: #D3D3D3;
+     }
+     p#welcome{
+       color: black;
+       margin-top: 12px;
+       font-size:20px;
+     }
+     p.EditButton{
+       background-color: #D3D3D3;
+
+     }
+     h2{color:#333;border:1px solid white; width:60%;border-radius:5em 2em 5em;background-color:green;color:white;padding:10px;}
+
+     h1{margin-top:200px; color:#333;border:1px solid white; width:40%;border-radius:5em 2em 5em;background-color:green;color:white;padding:10px;}
+     #lgn{font-size:18px;color:white; padding:8px;border-radius:6em 2em 6em;background:orange;box-shadow:3px 10px 20px #333;}
+     #lgn:hover{color:orange;background:white;border:white;}
+     .spanel{//border:1px solid black; width:400px;height:100px;margin-left:220px;float:left;pading-left:10px; padding-right:10px;}
+     .secpanel{//border:1px solid #333;height:200px;width:150px;float:left;margin-left:20px;}
+     button{width:100px;margin-left:10px; padding-left:15px;}
+    </style>
+    <br/>
+    {% if user %}
+        <div class="main-page">
+            <h3 class="title1"><p align="center"><center><h2>Welcome to Anagram Application</h2></center></p></h3>
+            <br>
+            <br>
+
+            <div class="spanel">
+                <p> <b>Search Anagram Word</b></p>
+                <br>
+                 <form method="post" action="/search">
+                    <div class="row" align="center">
+                    <label for="focusedinput" >Enter words:</label>
+                    <input type="text" name="word" required=True class="form-control1" id="focusedinput" placeholder="Enter words to search">
+
+                        <button type="submit" value="add" name="button" id="btn_click"  class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Submit</button>
+                    </div>
+                 </form>
+            </div>
+
+            <div class="secpanel">
+                <p> <b> Adding New Words</b></p>
+                <form method="get" action="/add">
+
+
+                  <button type="submit" value="add" name="add" id="btn_click"  class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> ADD</button>
+
+            </form>
+                <br>
+
+                <p><b>View All Words</b></p>
+                 <form method="post" action="/show">
+
+
+
+                  <button type="submit" value="show" name="show" id="btn_click" class = "btn btn-danger">Show</button>
+
+
+            </form>
+
+            </div>
+
+
+
+<!--            <form method="get" action="/search">-->
+<!--              <div class="row" align="center">-->
+
+<!--                  <button type="submit" value="search" name="search" id="btn_click" class = "btn btn-success">Search</button>-->
+<!--              </div>-->
+<!--            </form>-->
+
+
+<!--            <form method="get" action="/generate">-->
+<!--              <div class="row" align="center">-->
+
+<!--                  <button type="submit" value="generate" name="generate" id="btn_click"  class = "btn btn-info">Generate</button>-->
+<!--              </div>-->
+<!--            </form>-->
+
+        </div>
+    <br><br>
+        <div align="center"><p class="one" align="center">Press here to &nbsp; &nbsp; <a id="lgn" href='{{ url }}'> {{ url_string }} </a></p></div>
+        <div class="footer"> </div>
+    {% else %}
+    <center><h1>Anagram Application</h1></center>
+         <div align="center"><p class="one" align="center"> Press here to&nbsp;&nbsp; <a id="lgn" href='{{ url }}'> {{ url_string }} </a></p></div>
+    {% endif %}
+</body>
+</html>

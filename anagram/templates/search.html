@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Anagram-Search</title>
+    <style>
+        #Bpanel{//border:1px solid black;align:right;float:right;padding-left:20px;padding-top:10px;padding-right:25px;box-shadow:2px 2px 10px #333;border-radius: 0em 0em 0em 3em;
+            //margin-top:-20px;
+        }
+        #tpanel{float:left;//border:1px solid #333;width:90%;background:green;color:white;border-radius:0 0em 3em 0em;//margin-top:-20px;}
+        #ptl{float:left;width:100%;background:white;margin-top:10px;}
+        #fpanel{float:left;border:1px solid white; width:400px;height:100px;margin-left:15px;padding:10px;margin-bottom:20px;border-radius:3em 2em 3em;background:white;
+        box-shadow:1px 10px 30px green;margin-top:20px;
+        }
+        button{width:100px;margin-left:5px;}
+        #wpanel{float:left;margin-top:30px;width:100%;}
+    </style>
+</head>
+<body>
+     <div id="Bpanel">
+           <a href="/">Back</a>
+            <hr>
+        </div>
+
+        <div id="tpanel">
+            <h4>Search Words</h4>
+            <hr>
+        </div>
+
+     <div id="fpanel">
+        <p><i>Search for anagram word</i></p>
+         <form method="post" action="/search">
+            <table>
+                <tr>
+                    <td>
+                        <label for="focusedinput" >Enter words &nbsp;</label>
+                    </td>
+                    <td>
+                        <input type="text" name="word" required=True class="form-control1" id="focusedinput" placeholder="Enter word to search">
+
+                    </td>
+                    <td>
+                        <button type="submit" value="add" name="button" id="btn_click"  class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Submit</button>
+
+                    </td>
+                </tr>
+            </table>
+
+    </form>
+     </div>
+
+
+
+{% if present %}
+<div id="page-wrapper">
+			<div class="main-page">
+				<div class="tables">
+					<h2 class="title1">  </h2>
+					<div class="panel-body widget-shadow">
+
+<div class="table-responsive bs-example widget-shadow" id="ptl">
+						<h4>All Anagram:</h4>
+						<table class="table table-bordered"> <thead>
+                        <tr>
+                            <th>Word</th>
+                            <th>Lexographical order</th>
+                            <th>Word length</th>
+                            <th>Occurance</th>
+                        </tr>
+                        </thead>pd
+                            <tbody>
+                                {% for anagram_word in anagram_data %}
+                                    <tr>
+                                        <td>{{anagram_word.word}}</td>
+                                        <td><form action="/generate" method="get">
+                                               <input type="submit"  name="word" value="{{anagram_word.sorted_word}}">
+                                            </form>
+                                        </td>
+                                        <td>{{anagram_word.letter_count}}</td>
+                                        <td>{{anagram_word.word_count}}</td>
+                                    </tr>
+                                {% endfor %}
+                        </tbody>
+                        </table>
+					</div>
+                    </div>
+                </div>
+                <div>
+
+{% else %}
+<div class="alert alert-danger" id="wpanel">
+  <strong>Word is  Not Found</strong>
+</div>
+{% endif %}
+
+
+</body>
+</html>

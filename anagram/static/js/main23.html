@@ -1,0 +1,151 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>GPU </title>
+    </head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <body>
+
+
+              <script>
+
+         function autoRefresh1()
+        {
+        	   window.location.reload();
+        }
+
+         setInterval('autoRefresh1()', 3000);
+        </script>
+        <style>
+
+        p.one {
+    border-style: solid;
+    border-color: black;
+    width: 10%;
+    border-style: dotted;
+    font-size: 15px;
+    background-color: #C0C0C0;
+    margin-right: 30px;
+    margin-top: 0px;
+
+    }
+    .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #D3D3D3;
+    color: black;
+    text-align: center;
+}
+
+     table, th, td {
+     border: 1px solid black;
+
+     }
+     th{
+       background-color: #D3D3D3;
+     }
+     p#welcome{
+       color: black;
+       margin-top: 12px;
+       font-size:20px;
+     }
+     p.EditButton{
+       background-color: #D3D3D3;
+
+     }
+    </style>
+
+        {% if user %}
+
+            <nav class="navbar navbar-default">
+             <div class="container-fluid">
+             <div class="navbar-header">
+
+             <a class="navbar-brand" href="/">GPUApplication</a>
+             </div >
+             <ul class="nav navbar-nav navbar-right">
+
+             <li ><p id="welcome">Welcome {{user}} !!!!!</a></li>
+
+             </ul>
+             </div>
+            </nav>
+            <br/>
+            {% if myuser %}
+            <h4><p align="right">Hello guest welcome to the application</p></h4>
+            <p align="center">{{filter_key}}</p>
+                <table class="table table-striped table-hover">
+                   <thead>
+                    <tr>
+                        <th>
+                            Device
+                        </th>
+                        <th>
+                            Driver
+                        </th>
+                        <th>
+                            API
+                        </th>
+                        <th>
+                            Vender
+                        </th>
+                        <th>
+                            TYPE
+                        </th>
+                        <th>
+                            Version
+                        </th>
+                        <th>
+                            Platform
+                        </th>
+
+                    </tr>
+                   </thead>
+                   <tbody>
+                  {% for gpu_all_data in myuser %}
+                    <tr>
+
+                      <td>
+                          <a href="/features/{{gpu_all_data.name}}">{{gpu_all_data.name}}</a>
+                      </td>
+                      <td>
+                         {{gpu_all_data.driver_device}}
+                      </td>
+                      <td>
+                         {{gpu_all_data.api}}
+                      </td>
+                      <td>
+                         {{gpu_all_data.vendor_device}}
+                      </td>
+                      <td>
+                         {{gpu_all_data.type}}
+                      </td>
+                      <td>
+                         {{gpu_all_data.version_device}}
+                      </td>
+                      <td>
+                         {{gpu_all_data.platform_device}}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+                </table>
+
+            {% endif %}
+            <br/>
+            <div >
+              <h3><a href="/edit"><p id="EditButton" align="center">Add GPU</p></a></h3>
+
+            </div>
+        {% endif %}
+        <div align="center"><p class="one" align="center">Kindly  {{ logout_string }} <a href='{{ url }}'>here</a></p></div>
+
+
+        <div class="footer">
+  <p><b>Welcome to GPU Application</b></p>
+</div>
+    </body>
+</html>

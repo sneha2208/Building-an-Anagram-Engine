@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        #Bpanel{//border:1px solid black;align:right;float:right;padding-left:20px;padding-top:10px;padding-right:25px;box-shadow:2px 2px 10px #333;border-radius: 0em 0em 0em 3em;}
+        #tpanel{float:left;//border:1px solid #333;width:90%;background:green;color:white;border-radius:0 0em 3em 0em;}
+        #ptl{float:left;width:100%;background:white;margin-top:10px;}
+
+    </style>
+</head>
+<body>
+        <div id="Bpanel">
+           <a href="/">Back</a>
+            <hr>
+        </div>
+        <div id="tpanel">
+            <h4>Show All Words</h4>
+            <hr>
+        </div>
+
+<div class="table-responsive bs-example widget-shadow" id="ptl">
+    <h4>User words :</h4>
+    <table class="table table-bordered"> <thead>
+    <tr>
+        <th>Word</th>
+        <th>Lexographical order</th>
+        <th>Letter count</th>
+        <th>Occurance</th>
+    </tr>
+    </thead>
+        <tbody>
+            {% for anagram_word in anagram_data %}
+                <tr>
+                    <td>{{anagram_word.word}}</td>
+                    <td><form action="/generate" method="get">
+                           <input type="submit"  name="word" value="{{anagram_word.sorted_word}}">
+                        </form>
+                    </td>
+                    <td>{{anagram_word.letter_count}}</td>
+                    <td>{{anagram_word.word_count}}</td>
+                </tr>
+            {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
